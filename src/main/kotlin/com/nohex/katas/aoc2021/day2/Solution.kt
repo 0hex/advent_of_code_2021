@@ -7,11 +7,11 @@ import com.nohex.katas.Resources
  */
 
 fun main() {
-    println("Part 1: " + Solution().getPosition(getInput()))
+    println("Position: " + Solution().getPosition(getInput()))
 }
 
 private fun getInput() =
-    Resources.asLines("aoc2021/day2/part1.txt")
+    Resources.asLines("aoc2021/day2/input.txt")
         .filter(String::isNotBlank)
 
 internal class Solution {
@@ -19,13 +19,14 @@ internal class Solution {
     fun getPosition(moves: Sequence<String>): Pair<Int, Int> {
         var x = 0
         var depth = 0
+        var aim = 0
         for (move in moves) {
-            val (direction, distanceString, _) = move.split(" ")
-            val distance = distanceString.toInt()
+            val (direction, unitsString, _) = move.split(" ")
+            val units = unitsString.toInt()
             when (direction) {
-                "forward" -> x += distance
-                "down" -> depth += distance
-                "up" -> depth -= distance
+                "forward" -> {x += units; depth += aim * units}
+                "down" -> aim += units
+                "up" -> aim -= units
             }
         }
 

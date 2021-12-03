@@ -11,7 +11,7 @@ internal class SolutionTest {
      */
     @Test
     fun testExample() {
-        Solution().getPosition(getInput()) shouldBe Pair(15, 10)
+        Solution().getPosition(getInput()) shouldBe Pair(15, 60)
     }
 
     private fun getInput(): Sequence<String> =

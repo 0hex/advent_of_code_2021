@@ -1,4 +1,4 @@
-# Advent of Code 2020
+# Advent of Code 2021
 
 ![Java CI with Maven](https://github.com/0hex/advent_of_code_2021/workflows/Java%20CI%20with%20Maven/badge.svg)
 

@@ -7,11 +7,14 @@ import com.nohex.katas.Resources
  */
 
 fun main() {
-    val measurements = Resources.asLines("aoc2021/day1/input.txt")
+    println("Part 1: " + Solution().count(getInput()))
+    println("Part 2: " + Solution().countWindows(getInput()))
+}
+
+private fun getInput() =
+    Resources.asLines("aoc2021/day1/part1.txt")
         .filter(String::isNotBlank)
         .map(String::toInt)
-    println(Solution().count(measurements))
-}
 
 internal class Solution {
     /**
@@ -35,6 +38,32 @@ internal class Solution {
             if (current > previous)
                 count++
             previous = current
+        }
+
+        return count
+    }
+
+    /**
+     * Counts the number of consecutive increases in the provided measurements.
+     *
+     * @param measurements A sequence of measurements to be compared.
+     */
+    fun countWindows(measurements: Sequence<Int>): Int {
+        val iterator = measurements.windowed(3).iterator()
+        // If no elements, the count is 0.
+        if (!iterator.hasNext()) return 0
+
+        // Holds the count of consecutive increases.
+        var count = 0
+        // Get the first value.
+        var previousWindowSum = iterator.next().sum()
+        while (iterator.hasNext()) {
+            // Get the next value in the sequence
+            val currentWindowSum = iterator.next().sum()
+            // If the current value has increased since the last one, count it.
+            if (currentWindowSum > previousWindowSum)
+                count++
+            previousWindowSum = currentWindowSum
         }
 
         return count

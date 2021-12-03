@@ -11,14 +11,10 @@ internal class SolutionTest {
      */
     @Test
     fun testExample() {
-        // Given
-        val measurements = Resources.asLines("aoc2021/day1/example.txt")
-            .map(String::toInt)
-
-        // When
-        val increases = Solution().count(measurements)
-
-        // Then
-        increases shouldBe 7
+        Solution().count(getInput()) shouldBe 7
+        Solution().countWindows(getInput()) shouldBe 5
     }
+
+    private fun getInput(): Sequence<Int> =
+        Resources.asLines("aoc2021/day1/example.txt").map(String::toInt)
 }

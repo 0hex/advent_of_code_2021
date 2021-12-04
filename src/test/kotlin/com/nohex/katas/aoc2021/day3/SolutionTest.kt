@@ -5,13 +5,14 @@ import io.kotest.matchers.shouldBe
 import org.junit.jupiter.api.Test
 
 internal class SolutionTest {
-
-    /**
-     * Test the example in the puzzle description.
-     */
     @Test
-    fun testExample() {
+    fun testPowerConsumption() {
         Solution().getPowerConsumption(getInput()) shouldBe 198
+    }
+
+    @Test
+    fun testLifeSupportRating() {
+        Solution().getLifeSupportRating(getInput()) shouldBe 230
     }
 
     private fun getInput(): Sequence<String> =

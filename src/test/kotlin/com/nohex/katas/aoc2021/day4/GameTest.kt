@@ -9,7 +9,7 @@ internal class GameTest {
     fun testExample() {
         val settings = Resources.asLines("aoc2021/day4/example.txt")
         GameSettings(settings).run {
-            Game(boards).play(plays).getScore() shouldBe 4512
+            Game(boards).getFirstCompletedBoard(plays)?.score shouldBe 4512
         }
     }
 
@@ -17,7 +17,15 @@ internal class GameTest {
     fun testSmallExample() {
         val settings = Resources.asLines("aoc2021/day4/small.txt")
         GameSettings(settings).run {
-            Game(boards).play(plays).getScore() shouldBe 243
+            Game(boards).getFirstCompletedBoard(plays)?.score shouldBe 243
+        }
+    }
+
+    @Test
+    fun testLastBoard() {
+        val settings = Resources.asLines("aoc2021/day4/example.txt")
+        GameSettings(settings).run {
+            Game(boards).getLastCompletedBoard(plays)?.score shouldBe 1924
         }
     }
 }

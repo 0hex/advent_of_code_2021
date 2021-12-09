@@ -22,17 +22,17 @@ internal class BoardTest {
     fun testWinningRow() {
         val sut = Board(values.toMutableList())
         for (i in listOf(22, 13, 17, 11))
-            sut.check(i) shouldBe false
+            sut.check(i).isCompleted shouldBe false
 
-        sut.check(0) shouldBe true
+        sut.check(0).isCompleted shouldBe true
     }
 
     @Test
     fun testWinningColumn() {
         val sut = Board(values.toMutableList())
         for (i in listOf(22, 8, 21, 6))
-            sut.check(i) shouldBe false
+            sut.check(i).isCompleted shouldBe false
 
-        sut.check(1) shouldBe true
+        sut.check(1).isCompleted shouldBe true
     }
 }

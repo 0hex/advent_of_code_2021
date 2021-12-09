@@ -4,17 +4,20 @@ import com.nohex.katas.Resources
 import io.kotest.matchers.shouldBe
 import org.junit.jupiter.api.Test
 
-internal class SolutionTest {
+internal class SubmarineTest {
 
     /**
      * Test the example in the puzzle description.
      */
     @Test
     fun testExample() {
-        Solution().getPosition(getInput()) shouldBe Pair(15, 60)
+        val sut = Submarine()
+        getMoves().forEach { sut.move(it) }
+
+        sut.position shouldBe Pair(15, 60)
     }
 
-    private fun getInput(): Sequence<String> =
+    private fun getMoves(): Sequence<String> =
         Resources.asLines("aoc2021/day2/example.txt")
             .filter(String::isNotBlank)
 }

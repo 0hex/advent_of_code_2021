@@ -3,10 +3,9 @@ package com.nohex.katas.aoc2021.day3
 /**
  * A class that holds counters for several indexes.
  */
-internal class CharCounter(recordSize: Int, vararg indexes: Char) {
+internal class CharCounter(private val recordSize: Int, vararg indexes: Char) {
 
     private val counters = HashMap<Char, IntArray>()
-    private val _recordSize = recordSize
 
     init {
         counters
@@ -18,7 +17,7 @@ internal class CharCounter(recordSize: Int, vararg indexes: Char) {
     // Increase a character's count
     fun increase(character: Char, position: Int) {
         if (!counters.containsKey(character))
-            counters[character] = IntArray(_recordSize)
+            counters[character] = IntArray(recordSize)
 
         counters[character]!![position]++
     }
@@ -31,14 +30,14 @@ internal class CharCounter(recordSize: Int, vararg indexes: Char) {
 
     fun getMostCommonCharacters(): String {
         var mostCommonCharacters = ""
-        for (i in 0.._recordSize - 1) {
-            val keyIterator = counters.iterator();
+        for (i in 0 until recordSize) {
+            val keyIterator = counters.iterator()
             val firstCharacterCount = keyIterator.next()
             var mostCommonCharacter = firstCharacterCount.key
             var mostCommonCharacterCount = firstCharacterCount.value[i]
-            while (keyIterator.hasNext()){
+            while (keyIterator.hasNext()) {
                 val characterCount = keyIterator.next()
-                if (characterCount.value[i] > mostCommonCharacterCount){
+                if (characterCount.value[i] > mostCommonCharacterCount) {
                     mostCommonCharacter = characterCount.key
                     mostCommonCharacterCount = characterCount.value[i]
                 }
@@ -47,6 +46,6 @@ internal class CharCounter(recordSize: Int, vararg indexes: Char) {
             mostCommonCharacters += mostCommonCharacter
         }
 
-        return mostCommonCharacters;
+        return mostCommonCharacters
     }
 }

@@ -1,21 +1,6 @@
 package com.nohex.katas.aoc2021.day3
 
-import com.nohex.katas.Resources
-
-/**
- * Day 2 solution
- */
-
-fun main() {
-    println("Power consumption: " + Solution().getPowerConsumption(getInput()))
-    println("Life support rating: " + Solution().getLifeSupportRating(getInput()))
-}
-
-private fun getInput() =
-    Resources.asLines("aoc2021/day3/input.txt")
-        .filter(String::isNotBlank)
-
-internal class Solution {
+internal class SubmarineMetrics {
 
     fun getPowerConsumption(diagnostics: Sequence<String>): Int {
         val iterator = diagnostics.iterator()

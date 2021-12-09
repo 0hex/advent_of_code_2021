@@ -4,15 +4,15 @@ import com.nohex.katas.Resources
 import io.kotest.matchers.shouldBe
 import org.junit.jupiter.api.Test
 
-internal class SolutionTest {
+internal class SubmarineMetricsTest {
     @Test
     fun testPowerConsumption() {
-        Solution().getPowerConsumption(getInput()) shouldBe 198
+        SubmarineMetrics().getPowerConsumption(getInput()) shouldBe 198
     }
 
     @Test
     fun testLifeSupportRating() {
-        Solution().getLifeSupportRating(getInput()) shouldBe 230
+        SubmarineMetrics().getLifeSupportRating(getInput()) shouldBe 230
     }
 
     private fun getInput(): Sequence<String> =

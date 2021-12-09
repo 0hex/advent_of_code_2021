@@ -16,4 +16,3 @@ fun main() {
 private fun getInput() =
     Resources.asLines("aoc2021/day2/input.txt")
         .filter(String::isNotBlank)
-

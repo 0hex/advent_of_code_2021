@@ -2,10 +2,6 @@ package com.nohex.katas.aoc2021.day2
 
 import com.nohex.katas.Resources
 
-/**
- * Day 2 solution
- */
-
 fun main() {
     val submarine = Submarine()
     val instructions = getInput()

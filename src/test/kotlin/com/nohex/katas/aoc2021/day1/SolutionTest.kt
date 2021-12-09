@@ -6,9 +6,6 @@ import org.junit.jupiter.api.Test
 
 internal class SolutionTest {
 
-    /**
-     * Test the example in the puzzle description.
-     */
     @Test
     fun testExample() {
         Solution().count(getInput()) shouldBe 7

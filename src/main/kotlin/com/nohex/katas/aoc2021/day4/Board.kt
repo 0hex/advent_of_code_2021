@@ -46,7 +46,7 @@ class Board(val values: MutableList<Int?>) {
     }
 
     /**
-     * If the board contains the given value, its position in the board is returned.
+     * If the board contains [number], its position in the board is returned.
      */
     private fun findPosition(number: Int): Int? {
         val position = values.indexOf(number)
@@ -54,14 +54,14 @@ class Board(val values: MutableList<Int?>) {
     }
 
     /**
-     * Marks a value as played.
+     * Marks the [position] as played.
      */
     private fun markPosition(position: Int) {
         values[position] = null
     }
 
     /**
-     * Returns whether a position has been played.
+     * Returns whether the [position] has been played.
      */
     private fun isMarked(position: Int) = values[position] == null
 }

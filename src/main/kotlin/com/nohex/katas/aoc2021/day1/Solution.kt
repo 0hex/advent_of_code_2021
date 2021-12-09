@@ -2,9 +2,7 @@ package com.nohex.katas.aoc2021.day1
 
 internal class Solution {
     /**
-     * Counts the number of consecutive increases in the provided measurements.
-     *
-     * @param measurements A sequence of measurements to be compared.
+     * Counts the number of consecutive increases in the provided [measurements].
      */
     fun count(measurements: Sequence<Int>): Int {
         val iterator = measurements.iterator()
@@ -28,9 +26,7 @@ internal class Solution {
     }
 
     /**
-     * Counts the number of consecutive increases in the provided measurements.
-     *
-     * @param measurements A sequence of measurements to be compared.
+     * Counts the number of consecutive increases in the provided [measurements].
      */
     fun countWindows(measurements: Sequence<Int>): Int {
         val iterator = measurements.windowed(3).iterator()

@@ -6,9 +6,6 @@ import org.junit.jupiter.api.Test
 
 internal class SubmarineTest {
 
-    /**
-     * Test the example in the puzzle description.
-     */
     @Test
     fun testExample() {
         val sut = Submarine()

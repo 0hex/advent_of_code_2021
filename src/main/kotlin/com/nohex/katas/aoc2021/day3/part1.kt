@@ -2,10 +2,6 @@ package com.nohex.katas.aoc2021.day3
 
 import com.nohex.katas.Resources
 
-/**
- * Day 2 solution
- */
-
 fun main() {
     println("Power consumption: " + SubmarineMetrics().getPowerConsumption(getInput()))
 }

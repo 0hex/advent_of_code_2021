@@ -35,9 +35,8 @@ class Game(private val boards: Set<Board>) {
     }
 
     /**
-     * Checks all the game's boards for the given number.
-     * If one of the boards is completed, return it.
-     * @param number The number to be played.
+     * Checks all the game's boards for the given [number].
+     * If one of the boards is completed, it is returned.
      */
     private fun play(number: Int): Board? =
         boards

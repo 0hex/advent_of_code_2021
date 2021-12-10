@@ -6,10 +6,22 @@ import org.junit.jupiter.api.Test
 
 internal class HydrothermalVentMapTest {
     @Test
-    fun testDay1() {
+    fun testStraightLines() {
         val readings = Resources.asLines("aoc2021/day5/example.txt")
-        val map = MapLoader(readings)
-        HydrothermalVentMap(map.vectors)
+        val vectors = VectorReader(readings).vectors
+            .filter { it.isStraight }
+
+        HydrothermalVentMap(vectors)
             .getOverlapCount(threshold = 2) shouldBe 5
+    }
+
+    @Test
+    fun testStraightAndDiagonalLines() {
+        val readings = Resources.asLines("aoc2021/day5/example.txt")
+        val vectors = VectorReader(readings).vectors
+            .filter { it.isStraight || it.isDiagonal }
+
+        HydrothermalVentMap(vectors)
+            .getOverlapCount(threshold = 2) shouldBe 12
     }
 }

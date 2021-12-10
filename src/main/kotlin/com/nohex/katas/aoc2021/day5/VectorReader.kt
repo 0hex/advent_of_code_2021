@@ -6,7 +6,7 @@ package com.nohex.katas.aoc2021.day5
  * ...
  * </pre>
  */
-class MapLoader(readings: Sequence<String>) {
+class VectorReader(readings: Sequence<String>) {
     private val readingPattern = """\s*(\d+)\s*,\s*(\d+)\s*->\s*(\d+)\s*,\s*(\d+)\s*""".toRegex()
     val vectors: Sequence<Vector>
 
@@ -18,13 +18,15 @@ class MapLoader(readings: Sequence<String>) {
             .map { it.groupValues }
             .map { matches ->
                 Vector(
-                    startX = matches[1].toInt(),
-                    startY = matches[2].toInt(),
-                    endX = matches[3].toInt(),
-                    endY = matches[4].toInt()
+                    Point(
+                        x = matches[1].toInt(),
+                        y = matches[2].toInt()
+                    ),
+                    Point(
+                        x = matches[3].toInt(),
+                        y = matches[4].toInt()
+                    )
                 )
             }
-            // Keep only the vectors that define straight lines.
-            .filter { it.startX == it.endX || it.startY == it.endY }
     }
 }

@@ -17,8 +17,8 @@
     <java.version>11</java.version>
     <maven.compiler.source>${java.version}</maven.compiler.source>
     <maven.compiler.target>${java.version}</maven.compiler.target>
-    <junit.version>5.8.1</junit.version>
-    <kotlin.version>1.6.0</kotlin.version>
+    <junit.version>5.8.2</junit.version>
+    <kotlin.version>1.5.10</kotlin.version>
   </properties>
 
   <dependencies>
@@ -54,7 +54,7 @@
     <dependency>
       <groupId>io.kotest</groupId>
       <artifactId>kotest-runner-junit5-jvm</artifactId>
-      <version>4.6.3</version>
+      <version>5.0.1</version>
       <scope>test</scope>
     </dependency>
   </dependencies>

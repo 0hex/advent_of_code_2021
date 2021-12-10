@@ -14,18 +14,18 @@ internal class CharCounter(private val recordSize: Int, vararg indexes: Char) {
         }
     }
 
+    fun parse(record: String) {
+        for (i in record.indices) {
+            increase(record[i], i)
+        }
+    }
+
     // Increase a character's count
-    fun increase(character: Char, position: Int) {
+    private fun increase(character: Char, position: Int) {
         if (!counters.containsKey(character))
             counters[character] = IntArray(recordSize)
 
         counters[character]!![position]++
-    }
-
-    fun parse(record: String) {
-        for (i in 0..record.length - 1) {
-            increase(record[i], i)
-        }
     }
 
     fun getMostCommonCharacters(): String {

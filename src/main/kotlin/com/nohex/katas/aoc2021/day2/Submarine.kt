@@ -1,7 +1,7 @@
 package com.nohex.katas.aoc2021.day2
 
 internal class Submarine {
-    private var x = 0;
+    private var x = 0
     private var depth = 0
     private var aim = 0
 

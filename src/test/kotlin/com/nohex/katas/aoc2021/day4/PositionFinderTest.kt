@@ -45,8 +45,8 @@ internal class PositionFinderTest {
         val boardSize = sideLength * sideLength
         val sut = PositionFinder(boardSize)
 
-        sut.getColumnIndexes(boardSize - 1) shouldBe (sideLength - 1..boardSize - 1 step 1024)
-        sut.getRowIndexes(boardSize - 1) shouldBe (boardSize - sideLength..boardSize - 1)
+        sut.getColumnIndexes(boardSize - 1) shouldBe (sideLength - 1 until boardSize step sideLength)
+        sut.getRowIndexes(boardSize - 1) shouldBe (boardSize - sideLength until boardSize)
     }
 
     @Test

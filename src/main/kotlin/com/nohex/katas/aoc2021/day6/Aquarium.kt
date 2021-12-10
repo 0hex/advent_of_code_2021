@@ -5,15 +5,15 @@ private const val RESET_TIMER = 6
 private const val SPENT_TIMER = 0
 
 class Aquarium(initialTimers: List<Int>) {
-    private var timers = mutableMapOf<Int, Int>()
+    private var timers = mutableMapOf<Int, Long>()
     private var generation = 0
 
     init {
         // Create a map with counts for each timer.
-        initialTimers.forEach { timers.merge(it, 1, Int::plus) }
+        initialTimers.forEach { timers.merge(it, 1, Long::plus) }
     }
 
-    fun after(days: Int): Int {
+    fun after(days: Int): Long {
         while (generation < days) updateTimers()
 
         return timers.values.sum()
@@ -24,7 +24,7 @@ class Aquarium(initialTimers: List<Int>) {
      */
     private fun updateTimers() {
         // Create a new map for the update operation to be atomic.
-        val newTimers = mutableMapOf<Int, Int>()
+        val newTimers = mutableMapOf<Int, Long>()
         // The rest of values see their timer decreased.
         for (timer in 1..NEW_TIMER) {
             // Move the current timer values to the next one.

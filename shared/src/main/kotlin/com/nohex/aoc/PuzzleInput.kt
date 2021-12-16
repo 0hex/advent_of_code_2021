@@ -1,5 +1,6 @@
 package com.nohex.aoc
 
+import java.io.BufferedReader
 import java.io.InputStream
 
 /**
@@ -18,5 +19,12 @@ class PuzzleInput(path: String) {
      */
     fun asSequence(): Sequence<String> {
         return resource.bufferedReader().lineSequence()
+    }
+
+    /**
+     * Returns a string containing the whole resource.
+     */
+    fun asString(): String {
+        return resource.bufferedReader().use(BufferedReader::readText)
     }
 }

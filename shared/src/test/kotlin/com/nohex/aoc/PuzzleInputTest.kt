@@ -12,4 +12,10 @@ internal class PuzzleInputTest {
         iterator.next() shouldBe "Line 2"
         iterator.hasNext() shouldBe false
     }
+
+    @Test
+    fun `should load a resource from the classpath as a single line`() {
+        val sut = PuzzleInput("lines.txt")
+        sut.asString() shouldBe "Line 1\nLine 2"
+    }
 }

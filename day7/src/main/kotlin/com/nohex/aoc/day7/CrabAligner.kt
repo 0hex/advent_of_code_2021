@@ -5,9 +5,17 @@ import kotlin.math.abs
 class CrabAligner(input: Sequence<Int>) {
     private val values = input.toList().sorted()
 
-    val lowestCost =
-        values.minOfOrNull { value -> cost(value) }
+    val lowestFixedCost =
+        values.minOfOrNull { value -> fixedCost(value) }
 
-    private fun cost(value: Int) =
-        values.sumOf { abs(value - it) }
+    val lowestVariableCost =
+        (values.first()..values.last())
+            .minOfOrNull { value -> variableCost(value) }
+
+    private fun fixedCost(value: Int): Int {
+        return values.sumOf { abs(value - it) }
+    }
+
+    private fun variableCost(value: Int) =
+        values.sumOf { val n = abs(it - value); (n * (n + 1)) / 2 }
 }

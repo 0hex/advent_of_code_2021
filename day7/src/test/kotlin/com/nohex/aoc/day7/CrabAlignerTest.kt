@@ -7,6 +7,12 @@ internal class CrabAlignerTest {
     @Test
     fun testFixedCost() {
         val sut = CrabAligner(loadPositions("example.txt"))
-        sut.lowestCost shouldBe 37
+        sut.lowestFixedCost shouldBe 37
+    }
+
+    @Test
+    fun testVariableCost() {
+        val sut = CrabAligner(loadPositions("example.txt"))
+        sut.lowestVariableCost shouldBe 168
     }
 }

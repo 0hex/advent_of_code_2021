@@ -4,7 +4,8 @@ import com.nohex.aoc.PuzzleInput
 
 fun main() {
     val crabAligner = CrabAligner(loadPositions("input.txt"))
-    println("Day 7, part 1: " + crabAligner.lowestCost)
+    println("Day 7, part 1: " + crabAligner.lowestFixedCost)
+    println("Day 7, part 2: " + crabAligner.lowestVariableCost)
 }
 
 fun loadPositions(path: String): Sequence<Int> = PuzzleInput(path)

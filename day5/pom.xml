@@ -13,6 +13,10 @@
 
     <artifactId>day5</artifactId>
 
+    <properties>
+        <exec.mainClass>com.nohex.aoc.day5.SolutionKt</exec.mainClass>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>com.nohex.aoc</groupId>

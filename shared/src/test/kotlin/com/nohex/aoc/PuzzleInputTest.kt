@@ -16,6 +16,6 @@ internal class PuzzleInputTest {
     @Test
     fun `should load a resource from the classpath as a single line`() {
         val sut = PuzzleInput("lines.txt")
-        sut.asString() shouldBe "Line 1\nLine 2"
+        sut.asString() shouldBe "Line 1\nLine 2\n"
     }
 }

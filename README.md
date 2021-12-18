@@ -4,7 +4,7 @@
 
 [My](https://github.com/0hex) participation in the 2021 edition of [Advent of Code](https://adventofcode.com/2021/).
 
-Create new project using:
+To code the solution for a new puzzle, please use:
 ```bash
 mvn archetype:generate \
   -DarchetypeGroupId=com.nohex.aoc \

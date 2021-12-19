@@ -1,19 +1,17 @@
 package com.nohex.aoc.day4
 
 import io.kotest.assertions.throwables.shouldThrow
+import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
-import org.junit.jupiter.api.Test
 
-internal class PositionFinderTest {
-    @Test
-    fun failOnNonSquareBoards() {
+internal class PositionFinderTest : StringSpec({
+    "fail on non-square boards" {
         (5..8).forEach {
             shouldThrow<IllegalArgumentException> { PositionFinder(it) }
         }
     }
 
-    @Test
-    fun test2x2Board() {
+    "2x2 board" {
         val sut = PositionFinder(4)
         sut.getRowIndexes(0) shouldBe 0..1
         sut.getColumnIndexes(0) shouldBe (0..2 step 2)
@@ -28,8 +26,7 @@ internal class PositionFinderTest {
         sut.getColumnIndexes(3) shouldBe (1..3 step 2)
     }
 
-    @Test
-    fun test10x10Board() {
+    "10x10 board" {
         val sut = PositionFinder(100)
 
         sut.getColumnIndexes(3) shouldBe (3..93 step 10)
@@ -39,8 +36,7 @@ internal class PositionFinderTest {
         sut.getRowIndexes(25) shouldBe (20..29)
     }
 
-    @Test
-    fun testLargeBoard() {
+    "large board" {
         val sideLength = 1024
         val boardSize = sideLength * sideLength
         val sut = PositionFinder(boardSize)
@@ -49,10 +45,9 @@ internal class PositionFinderTest {
         sut.getRowIndexes(boardSize - 1) shouldBe (boardSize - sideLength until boardSize)
     }
 
-    @Test
-    fun testOffLimits() {
+    "off-limits" {
         val sut = PositionFinder(1)
         shouldThrow<IndexOutOfBoundsException> { sut.getColumnIndexes(1) }
         shouldThrow<IndexOutOfBoundsException> { sut.getRowIndexes(1) }
     }
-}
+})

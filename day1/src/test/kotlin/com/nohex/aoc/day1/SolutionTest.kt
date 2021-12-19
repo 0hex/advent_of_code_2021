@@ -1,19 +1,19 @@
 package com.nohex.aoc.day1
 
 import com.nohex.aoc.PuzzleInput
+import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
-import org.junit.jupiter.api.Test
 
-internal class SolutionTest {
+internal class SolutionTest : StringSpec({
 
-    @Test
-    fun testExample() {
+    "example" {
         Solution().count(getInput()) shouldBe 7
         Solution().countWindows(getInput()) shouldBe 5
     }
+})
 
-    private fun getInput(): Sequence<Int> =
-        PuzzleInput("example.txt")
-            .asSequence()
-            .map(String::toInt)
-}
+private fun getInput(): Sequence<Int> =
+    PuzzleInput("example.txt")
+        .asSequence()
+        .map(String::toInt)
+

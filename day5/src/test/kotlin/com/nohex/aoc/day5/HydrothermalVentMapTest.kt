@@ -1,12 +1,11 @@
 package com.nohex.aoc.day5
 
 import com.nohex.aoc.PuzzleInput
+import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
-import org.junit.jupiter.api.Test
 
-internal class HydrothermalVentMapTest {
-    @Test
-    fun testStraightLines() {
+internal class HydrothermalVentMapTest : StringSpec({
+    "straight lines" {
         val readings = PuzzleInput("example.txt").asSequence()
         val vectors = VectorReader(readings).vectors
             .filter { it.isStraight }
@@ -15,8 +14,7 @@ internal class HydrothermalVentMapTest {
             .getOverlapCount(threshold = 2) shouldBe 5
     }
 
-    @Test
-    fun testStraightAndDiagonalLines() {
+    "diagonal lines" {
         val readings = PuzzleInput("example.txt").asSequence()
         val vectors = VectorReader(readings).vectors
             .filter { it.isStraight || it.isDiagonal }
@@ -24,4 +22,4 @@ internal class HydrothermalVentMapTest {
         HydrothermalVentMap(vectors)
             .getOverlapCount(threshold = 2) shouldBe 12
     }
-}
+})

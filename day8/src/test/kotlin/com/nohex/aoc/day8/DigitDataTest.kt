@@ -1,14 +1,13 @@
 package com.nohex.aoc.day8
 
+import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
-import org.junit.jupiter.api.Test
 
 private const val inputForDigitData =
     "acedgfb cdfbe gcdfa fbcad dab cefabd cdfgeb eafb cagedb ab | cdfeb fcadb cdfeb cdbaf"
 
-internal class DigitDataTest {
-    @Test
-    fun testInferWiring() {
+internal class DigitDataTest : StringSpec({
+    "wiring inference" {
         val sut = DigitData(inputForDigitData)
         sut.wiring[0]!! shouldBe Digit("cagedb")
         sut.wiring[1]!! shouldBe Digit("ab")
@@ -21,4 +20,4 @@ internal class DigitDataTest {
         sut.wiring[8]!! shouldBe Digit("acedgfb")
         sut.wiring[9]!! shouldBe Digit("cefabd")
     }
-}
+})

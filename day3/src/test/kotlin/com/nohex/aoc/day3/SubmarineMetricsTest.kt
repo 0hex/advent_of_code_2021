@@ -1,21 +1,19 @@
 package com.nohex.aoc.day3
 
 import com.nohex.aoc.PuzzleInput
+import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
-import org.junit.jupiter.api.Test
 
-internal class SubmarineMetricsTest {
-    @Test
-    fun testPowerConsumption() {
+internal class SubmarineMetricsTest : StringSpec({
+    "power consumption" {
         SubmarineMetrics().getPowerConsumption(getInput()) shouldBe 198
     }
 
-    @Test
-    fun testLifeSupportRating() {
+    "life support" {
         SubmarineMetrics().getLifeSupportRating(getInput()) shouldBe 230
     }
+})
 
-    private fun getInput(): Sequence<String> =
-        PuzzleInput("example.txt").asSequence()
-            .filter(String::isNotBlank)
-}
+private fun getInput(): Sequence<String> =
+    PuzzleInput("example.txt").asSequence()
+        .filter(String::isNotBlank)

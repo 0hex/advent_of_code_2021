@@ -1,21 +1,19 @@
 package com.nohex.aoc.day2
 
 import com.nohex.aoc.PuzzleInput
+import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
-import org.junit.jupiter.api.Test
 
-internal class SubmarineTest {
+internal class SubmarineTest : StringSpec({
 
-    @Test
-    fun testExample() {
+    "example" {
         val sut = Submarine()
-        getMoves().forEach { sut.move(it) }
 
-        sut.position shouldBe Pair(15, 60)
-    }
-
-    private fun getMoves(): Sequence<String> =
         PuzzleInput("example.txt")
             .asSequence()
             .filter(String::isNotBlank)
-}
+            .forEach { sut.move(it) }
+
+        sut.position shouldBe Pair(15, 60)
+    }
+})

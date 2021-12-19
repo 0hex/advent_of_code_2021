@@ -1,13 +1,12 @@
 package com.nohex.aoc.day4
 
 import com.nohex.aoc.PuzzleInput
+import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.collections.shouldContainInOrder
 import io.kotest.matchers.sequences.shouldContainInOrder
-import org.junit.jupiter.api.Test
 
-internal class GameSettingsTest {
-    @Test
-    fun testParseSmallBoard() {
+internal class GameSettingsTest : StringSpec({
+    "parse small board" {
         val input = PuzzleInput("small.txt").asSequence()
 
         val sut = GameSettings(input)
@@ -24,4 +23,4 @@ internal class GameSettingsTest {
             7, 5, 9
         )
     }
-}
+})

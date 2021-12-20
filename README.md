@@ -4,14 +4,14 @@
 
 [My](https://github.com/0hex) participation in the 2021 edition of [Advent of Code](https://adventofcode.com/2021/).
 
-To code the solution for a new puzzle, please use:
+To code the solution for a new puzzle, please use the following command, remembering to set the desired `DAY`:
 ```bash
-mvn archetype:generate \
+DAY=0 mvn archetype:generate \
   -DarchetypeGroupId=com.nohex.aoc \
   -DarchetypeArtifactId=maven-archetype \
   -DarchetypeVersion=1.0.0 \
   -DgroupId=com.nohex.aoc \
   -Dversion=2021.0-SNAPSHOT \
-  -DartifactId=dayX
+  -DartifactId=day${DAY} \
   -DinteractiveMode=false
 ```

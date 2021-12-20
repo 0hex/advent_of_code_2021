@@ -1,5 +1,6 @@
 package com.nohex.aoc.day5
 
+import com.nohex.aoc.Point
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.sequences.shouldContainAll
 import io.kotest.matchers.shouldBe

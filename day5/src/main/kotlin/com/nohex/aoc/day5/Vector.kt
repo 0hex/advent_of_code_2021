@@ -1,8 +1,7 @@
 package com.nohex.aoc.day5
 
+import com.nohex.aoc.Point
 import kotlin.math.abs
-
-data class Point(val x: Int, val y: Int)
 
 class Vector(private val start: Point, private val end: Point) {
     val isStraight = start.x == end.x || start.y == end.y

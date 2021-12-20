@@ -1,5 +1,7 @@
 package com.nohex.aoc.day5
 
+import com.nohex.aoc.Point
+
 /** Produces a list of vectors from an appropriately formatted string sequence, e.g.:
  * <pre>
  * 1, 2 -> 3, 4

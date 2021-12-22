@@ -6,11 +6,15 @@ import kotlinx.coroutines.runBlocking
 
 fun main() = runBlocking {
     val input = getInput("input.txt")
-    val solution = MeasureSet(input)
+    val measureSet = MeasureSet(input)
+
+    val riskLevelSum = measureSet
         .findRiskLevels()
         .toList().sum()
+    println("Day 9, part 1: $riskLevelSum")
 
-    println("day9, part 1: $solution")
+    val largest3BasinsSizeProduct = measureSet.getTop3BasinSizeProduct()
+    println("Day 9, part 2: $largest3BasinsSizeProduct")
 }
 
 fun getInput(path: String) =

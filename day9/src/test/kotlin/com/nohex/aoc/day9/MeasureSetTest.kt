@@ -9,9 +9,13 @@ internal class MeasureSetTest : ShouldSpec({
         val input = getInput("example.txt")
         val sut = MeasureSet(input)
 
-        should("produce the expected result") {
+        should("produce the expected result for part 1") {
             val riskLevels = sut.findRiskLevels().toList()
             riskLevels.sum() shouldBe 15
+        }
+
+        should("produce the expected result for part 2") {
+            sut.getTop3BasinSizeProduct() shouldBe 1134
         }
     }
 })

@@ -6,7 +6,7 @@ import kotlinx.coroutines.runBlocking
 
 fun main() = runBlocking {
     val input = getInput("input.txt")
-    val solution = HeightMatrix(input)
+    val solution = MeasureSet(input)
         .findRiskLevels()
         .toList().sum()
 

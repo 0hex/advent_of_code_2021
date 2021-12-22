@@ -24,6 +24,7 @@
         <module>day6</module>
         <module>day7</module>
         <module>day8</module>
+        <module>day9</module>
     </modules>
 
     <properties>
@@ -33,6 +34,7 @@
         <maven.compiler.target>${java.version}</maven.compiler.target>
         <junit.version>5.8.2</junit.version>
         <kotlin.version>1.6.0</kotlin.version>
+        <kotlinx.version>1.5.2</kotlinx.version>
         <kotest.version>5.0.2</kotest.version>
     </properties>
 
@@ -61,6 +63,16 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.jetbrains.kotlinx</groupId>
+                <artifactId>kotlinx-coroutines-core</artifactId>
+                <version>${kotlinx.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <build>
         <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->

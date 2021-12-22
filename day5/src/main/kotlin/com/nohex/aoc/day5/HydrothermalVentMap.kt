@@ -1,5 +1,7 @@
 package com.nohex.aoc.day5
 
+import com.nohex.aoc.Point
+
 class HydrothermalVentMap(vectors: Sequence<Vector>) {
 
     private val countsPerPoint = mutableMapOf<Point, Int>()

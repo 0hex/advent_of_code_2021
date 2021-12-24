@@ -22,7 +22,8 @@ class ChunkAnalyser(input: Sequence<String>) {
     private fun analyseLine(line: String) {
         val charIterator = line.iterator()
         val stack = ArrayDeque<Char>()
-        while (charIterator.hasNext()) {
+        var isCorrupted = false
+        while (charIterator.hasNext() && !isCorrupted) {
             val current = charIterator.nextChar()
             // If it's an opener, add it to the stack.
             if (current in openers)
@@ -36,6 +37,7 @@ class ChunkAnalyser(input: Sequence<String>) {
                     if (it.opener != removed) {
                         // Account for the corrupting character.
                         corruptedScores.add(it.score)
+                        isCorrupted = true
                     }
                 }
             }

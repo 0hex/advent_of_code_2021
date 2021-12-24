@@ -8,8 +8,12 @@ internal class ChunkAnalyserTest : ShouldSpec({
         val input = getInput("example.txt")
         val sut = ChunkAnalyser(input)
 
-        should("produce the expected result") {
+        should("produce the expected result for day 1") {
             sut.corruptedScore shouldBe 26397
+        }
+
+        should("produce the expected result for part 2") {
+            sut.middleScore shouldBe 288957
         }
     }
 })

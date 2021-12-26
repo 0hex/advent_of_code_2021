@@ -7,16 +7,22 @@ package com.nohex.aoc.day11
 class OctopusAquarium(private val octopuses: Set<Octopus>) {
     var flashCount: Int = 0
         private set
+    var iteration = 0
+        private set
+    val allFlashed
+        get() = flashers.size == octopuses.size
     private val flashers = mutableSetOf<Octopus>()
 
     fun step() {
+        iteration++
+
+        // All octopuses are now free to flash.
+        flashers.clear()
+
         // Increase every octopus' energy level.
         octopuses.forEach { it.increaseLevel(flashers) }
 
-        // Count the flashers.
+        // Keep track of the flashes.
         flashCount += flashers.size
-
-        // All octopuses are free to flash again.
-        flashers.clear()
     }
 }

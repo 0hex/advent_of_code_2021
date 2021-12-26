@@ -17,7 +17,7 @@ class OctopusMapBuilder {
     }
 
     /**
-     * Adds values to a map of [Point]s and [Octopus]s from the [Char]s in [encodedValues].
+     * Adds values to a map of {@link Point}s and {@link Octopus}es from the characters in [encodedValues].
      */
     private fun MutableMap<Point, Octopus>.addCells(
         encodedValues: String,
@@ -33,7 +33,7 @@ class OctopusMapBuilder {
     }
 
     /**
-     * Adds a value to a map of [Point]s and [Octopus]s.
+     * Adds a value to a map of {@link Point}s and {@link Octopus}es.
      */
     private fun MutableMap<Point, Octopus>.add(
         x: Int,

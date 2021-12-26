@@ -6,10 +6,24 @@ fun main() {
     val input = getInput("input.txt")
     val octopuses = OctopusMapBuilder().load(input).values.toMutableSet()
     val aquarium = OctopusAquarium(octopuses)
-    // Run for 100 iterations.
-    repeat(100) { aquarium.step() }
+    var hundredthIterationFlashCount: Int? = null
+    var firstFullFlashIterationStep: Int? = null
 
-    println("Day 11, part 1: ${aquarium.flashCount}")
+    // Iterate until both measures have been found.
+    while (hundredthIterationFlashCount == null || firstFullFlashIterationStep == null) {
+        aquarium.step()
+
+        if (aquarium.iteration == 100) {
+            hundredthIterationFlashCount = aquarium.flashCount
+        }
+
+        if (aquarium.allFlashed) {
+            firstFullFlashIterationStep = aquarium.iteration
+        }
+    }
+
+    println("Day 11, part 1: $hundredthIterationFlashCount")
+    println("Day 11, part 2: $firstFullFlashIterationStep")
 }
 
 fun getInput(path: String) =

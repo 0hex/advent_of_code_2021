@@ -3,9 +3,10 @@ package com.nohex.aoc.day12
 import com.nohex.aoc.PuzzleInput
 
 fun main() {
-    val pathCount = loadMap("input.txt").pathCount
+    val caveMap = loadMap("input.txt")
 
-    println("Day 12, part 1: $pathCount")
+    println("Day 12, part 1: ${caveMap.pathCount}")
+    println("Day 12, part 2: ${caveMap.longPathCount}")
 }
 
 fun loadMap(path: String) =

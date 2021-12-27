@@ -5,7 +5,9 @@ const val END_NAME = "end"
 
 class CaveMap(input: Sequence<String>) {
     val pathCount: Int
-        get() = getPaths().count()
+        get() = getPaths { path, cave -> path.canVisit(cave) }.count()
+    val longPathCount: Int
+        get() = getPaths { path, cave -> path.canVisitTwice(cave) }.count()
 
     private val caves: Set<Cave>
 
@@ -31,18 +33,22 @@ class CaveMap(input: Sequence<String>) {
     /**
      * Get all paths from the start cave.
      */
-    private fun getPaths(): List<Path> =
+    private fun getPaths(visitableCondition: (Path, Cave) -> Boolean): List<Path> =
         caves.find { it.isStart }?.let {
-            followPaths(it, Path(), mutableMapOf())
+            followPaths(it, Path(), visitableCondition)
         } ?: emptyList()
 
 
     /**
-     * Follows all paths
+     * Returns a list of all paths to [cave]'s connections.
      */
-    private fun followPaths(cave: Cave, path: Path, visitCounts: MutableMap<Cave, Int>): List<Path> {
+    private fun followPaths(
+        cave: Cave,
+        path: Path,
+        visitableCondition: (Path, Cave) -> Boolean
+    ): List<Path> {
         // Add the current place to the path.
-        val currentPath = Path(path.places + cave)
+        val currentPath = Path(path.caves + cave)
 
         // When there are no more connections, return the path so far.
         if (cave.connections.isEmpty())
@@ -51,8 +57,8 @@ class CaveMap(input: Sequence<String>) {
         // Otherwise, explore the connections.
         return cave.connections
             // Follow all visitable paths from this place.
-            .filter { path.canVisit(cave) }
+            .filter { visitableCondition(path, cave) }
             // Create a new path for each connection.
-            .flatMap { followPaths(it, currentPath, visitCounts) }
+            .flatMap { followPaths(it, currentPath, visitableCondition) }
     }
 }

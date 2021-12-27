@@ -4,10 +4,9 @@ import io.kotest.core.spec.style.ShouldSpec
 import io.kotest.matchers.shouldBe
 import kotlinx.coroutines.flow.toList
 
-internal class MeasureSetTest : ShouldSpec({
+internal class MeasureCalculatorTest : ShouldSpec({
     context("The example input") {
-        val input = getInput("example.txt")
-        val sut = MeasureSet(input)
+        val sut = MeasureCalculator(loadMeasures("example.txt"))
 
         should("produce the expected result for part 1") {
             val riskLevels = sut.findRiskLevels().toList()

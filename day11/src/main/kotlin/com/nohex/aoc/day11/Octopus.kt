@@ -1,27 +1,9 @@
 package com.nohex.aoc.day11
 
+import com.nohex.aoc.DefaultNavigableItem
+
 /** An octopus with an associated energy level, and knowledge about its neighbours */
-class Octopus(var level: Int) {
-    private val _neighbours = mutableSetOf<Octopus>()
-    val neighbours
-        get() = _neighbours.toSet()
-
-    /**
-     * Lets the octopus know about a nearby octopus.
-     */
-    fun addNeighbour(neighbour: Octopus?) {
-        // If already a neighbour, exit.
-        if (neighbour in _neighbours)
-            return
-
-        // If the neighbour exists...
-        neighbour?.let {
-            // ... add a reference to it...
-            _neighbours.add(it)
-            // ... and let the neighbour know about this instance.
-            it.addNeighbour(this)
-        }
-    }
+class Octopus(var level: Int) : DefaultNavigableItem() {
 
     /**
      * Increases the octopus's energy level.
@@ -43,7 +25,9 @@ class Octopus(var level: Int) {
         // This octopus is now a flasher.
         flashers += this
         // Increase the neighbours' energy level.
-        _neighbours.forEach { it.increaseLevel(flashers) }
+        neighbours
+            .filterIsInstance<Octopus>()
+            .forEach { it.increaseLevel(flashers) }
         // finally, reset this octopus's energy level.
         level = 0
     }

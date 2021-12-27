@@ -5,9 +5,8 @@ import io.kotest.matchers.shouldBe
 
 internal class OctopusAquariumTest : ShouldSpec({
     context("The dumbo octopus aquarium") {
-        val input = getInput("example.txt")
-        val initialMap = OctopusMapBuilder().load(input)
-        val sut = OctopusAquarium(initialMap.values.toMutableSet())
+        val octopuses = spawnOctopuses("example.txt")
+        val sut = OctopusAquarium(octopuses)
 
         should("have seen 1656 flashes after 100 iterations") {
             repeat(100) { sut.step() }

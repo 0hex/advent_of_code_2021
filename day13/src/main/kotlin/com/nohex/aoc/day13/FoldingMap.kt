@@ -26,4 +26,14 @@ class FoldingMap(initialDotLocations: Set<Point>) {
             }
         }.toSet()
     }
+
+    fun display() {
+        val maxX = dots.maxOf { it.x }
+        val maxY = dots.maxOf { it.y }
+        for (y in 0..maxY) {
+            for (x in 0..maxX)
+                print(dots.find { it.x == x && it.y == y }?.let { "#" } ?: ".")
+            println()
+        }
+    }
 }

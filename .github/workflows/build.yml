@@ -15,8 +15,8 @@ jobs:
       - name: Set up JDK 11
         uses: actions/setup-java@v1
         with:
-          java-version: 11
+          java-version: 17
       - name: Build with Maven
-        run: mvn --batch-mode --update-snapshots verify
+        run: mvn --batch-mode --update-snapshots verify install
       - name: Run with Maven
-        run: mvn --batch-mode --update-snapshots compile exec:java
+        run: mvn --batch-mode --update-snapshots exec:java

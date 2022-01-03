@@ -13,35 +13,38 @@ internal class PolymerProcessorTest : ShouldSpec({
         should("produce the expected result") {
             // Step 1
             sut.step()
-            sut.polymer shouldBe "NCNBCHB"
+            sut.elementCounts shouldBe countOf("NCNBCHB")
 
             // Step 2
             sut.step()
-            sut.polymer shouldBe "NBCCNBBBCBHCB"
+            sut.elementCounts shouldBe countOf("NBCCNBBBCBHCB")
 
             // Step 3
             sut.step()
-            sut.polymer shouldBe "NBBBCNCCNBBNBNBBCHBHHBCHB"
+            sut.elementCounts shouldBe countOf("NBBBCNCCNBBNBNBBCHBHHBCHB")
 
             // Step 4
             sut.step()
-            sut.polymer shouldBe "NBBNBNBBCCNBCNCCNBBNBBNBBBNBBNBBCBHCBHHNHCBBCBHCB"
+            sut.elementCounts shouldBe countOf("NBBNBNBBCCNBCNCCNBBNBBNBBBNBBNBBCBHCBHHNHCBBCBHCB")
 
             // Step 5
             sut.step()
-            sut.polymer.length shouldBe 97
 
             // Step 10
             repeat(5) { sut.step() }
-            sut.polymer.length shouldBe 3073
-            sut.counts['B'] shouldBe 1749
-            sut.counts['C'] shouldBe 298
-            sut.counts['H'] shouldBe 161
-            sut.counts['N'] shouldBe 865
+            sut.elementCounts['B'] shouldBe 1749
+            sut.elementCounts['C'] shouldBe 298
+            sut.elementCounts['H'] shouldBe 161
+            sut.elementCounts['N'] shouldBe 865
 
             with(sut) {
-                counts.maxOf { it.value } - counts.minOf { it.value } shouldBe 1588
+                elementCounts.maxOf { it.value } - elementCounts.minOf { it.value } shouldBe 1588
             }
+
+            // Step 40
+            repeat(30) { sut.step() }
+            sut.elementCounts.maxOf { it.value } shouldBe 2192039569602
+            sut.elementCounts.minOf { it.value } shouldBe 3849876073
         }
     }
 
@@ -61,8 +64,16 @@ internal class PolymerProcessorTest : ShouldSpec({
         should("always produce the same polymer") {
             repeat(3) {
                 sut.step()
-                sut.polymer shouldBe "ABCD"
+                sut.elementCounts shouldBe mapOf(
+                    'A' to 1,
+                    'B' to 1,
+                    'C' to 1,
+                    'D' to 1,
+                )
             }
         }
     }
 })
+
+fun countOf(polymer: String): Map<Char, Int> =
+    polymer.toCharArray().toList().groupingBy { it }.eachCount()

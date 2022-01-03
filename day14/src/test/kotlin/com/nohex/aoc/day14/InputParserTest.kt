@@ -16,7 +16,7 @@ internal class InputParserTest : ShouldSpec({
 
         should("parse templates and insertion pair rules") {
             sut.template shouldBe "AB"
-            sut.insertionRules shouldContain Pair("AB", 'C')
+            sut.insertionRules shouldContain Pair(Pair('A', 'B'), 'C')
         }
     }
 })

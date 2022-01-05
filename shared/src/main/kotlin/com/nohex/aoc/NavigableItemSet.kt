@@ -8,7 +8,11 @@ package com.nohex.aoc
  *
  * @param T The type of the elements in the map.
  */
-class NavigableItemSet<T : NavigableItem>(private val relativeNeighbourPositions: Set<Point>) {
+class NavigableItemSet<T : NavigableItem>(
+    private val relativeNeighbourPositions: Set<Point>,
+    private val canTrackBack: Boolean = true
+) {
+    private val cells = mutableMapOf<Point, T>()
 
     /**
      * Create a map from a sequence of strings (the [input]) that represent a
@@ -17,43 +21,40 @@ class NavigableItemSet<T : NavigableItem>(private val relativeNeighbourPositions
      */
     fun load(
         input: Sequence<String>,
-        elementBuilder: (Char) -> T
+        elementBuilder: (Point, Char) -> T
     ): Map<Point, T> {
-        val cells = mutableMapOf<Point, T>()
         val iterator = input.iterator()
+
+        // Set up the 2D map.
         var row = 0
+        var column = 0
         while (iterator.hasNext()) {
-            var column = 0
+            column = 0
             iterator.next().forEach { valueAsChar ->
-                val newElement = elementBuilder(valueAsChar)
-                cells.add(column++, row, newElement)
+                val position = Point(column++, row)
+                val newElement = elementBuilder(position, valueAsChar)
+                cells[position] = newElement
             }
             // Each line in the input is a new row.
             row++
         }
 
+        // Once the map is complete, assign the neighbours.
+        // This is done in two steps to ensure all neighbours are in place.
+        for (x in 0 until column)
+            for (y in 0 until row) {
+                val location = Point(x, y)
+                cells[location]?.let { origin ->
+                    // Add neighbours.
+                    relativeNeighbourPositions.forEach { currentLocation ->
+                        // If there is a cell at any of the specified map locations...
+                        cells[location.transform(currentLocation)]
+                            // ... add them as neighbours.
+                            ?.let { origin.addNeighbour(it, canTrackBack) }
+                    }
+                }
+            }
+
         return cells.toMap()
-    }
-
-    /**
-     * Adds a value to a map indexed by {@link Point}s.
-     */
-    private fun MutableMap<Point, T>.add(
-        column: Int,
-        row: Int,
-        newElement: T
-    ) {
-        val location = Point(column, row)
-
-        // Add the new cell to the map.
-        this[location] = newElement
-
-        // Add neighbours.
-        relativeNeighbourPositions.forEach {
-            // If there is a cell at any of the specified map locations...
-            this[location.transform(it)]
-                // ... add them as neighbours.
-                ?.let(newElement::addNeighbour)
-        }
     }
 }

@@ -29,6 +29,6 @@ fun main() = runBlocking {
 fun loadMeasures(path: String) =
     PuzzleInput(path).asSequence().let { data ->
         NavigableItemSet<Measure>(mainCardinalPoints)
-            .load(data) { Measure(it - '0') }
+            .load(data) { _, value -> Measure(value.digitToInt()) }
             .values.toSet()
     }

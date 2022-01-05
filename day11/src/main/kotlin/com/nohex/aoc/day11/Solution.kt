@@ -38,10 +38,7 @@ fun main() {
     println("Day 11, part 2: $firstFullFlashIterationStep")
 }
 
-fun spawnOctopuses(path: String): MutableSet<Octopus> {
-    val input = PuzzleInput(path).asSequence()
-    val octopuses = NavigableItemSet<Octopus>(allCardinalPoints)
-        .load(input) { Octopus(it - '0') }
+fun spawnOctopuses(path: String): MutableSet<Octopus> =
+    NavigableItemSet<Octopus>(allCardinalPoints)
+        .load(PuzzleInput(path).asSequence()) { _, value -> Octopus(value.digitToInt()) }
         .values.toMutableSet()
-    return octopuses
-}

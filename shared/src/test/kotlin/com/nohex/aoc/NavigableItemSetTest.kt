@@ -23,7 +23,7 @@ class NavigableItemSetTest : ShouldSpec({
                 Point(0, 1), // South
             )
         )
-        val navigableItems = sut.load(input.lineSequence(), ::NavigableChar)
+        val navigableItems = sut.load(input.lineSequence()) { _, it -> NavigableChar(it) }
 
         should("end up with 5 at its center, having 4 neighbours") {
             navigableItems[Point(1, 1)]?.let {

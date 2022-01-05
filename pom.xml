@@ -30,6 +30,7 @@
         <module>day12</module>
         <module>day13</module>
         <module>day14</module>
+        <module>day15</module>
     </modules>
 
     <properties>
@@ -41,6 +42,7 @@
         <kotlin.version>1.6.0</kotlin.version>
         <kotlinx.version>1.5.2</kotlinx.version>
         <kotest.version>5.0.2</kotest.version>
+        <logback.version>1.2.10</logback.version>
     </properties>
 
     <dependencies>
@@ -75,6 +77,21 @@
                 <groupId>org.jetbrains.kotlinx</groupId>
                 <artifactId>kotlinx-coroutines-core</artifactId>
                 <version>${kotlinx.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>1.7.32</version>
+            </dependency>
+            <dependency>
+                <groupId>ch.qos.logback</groupId>
+                <artifactId>logback-classic</artifactId>
+                <version>${logback.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>ch.qos.logback</groupId>
+                <artifactId>logback-core</artifactId>
+                <version>${logback.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

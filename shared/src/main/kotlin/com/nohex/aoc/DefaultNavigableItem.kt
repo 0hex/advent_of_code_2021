@@ -8,7 +8,7 @@ abstract class DefaultNavigableItem : NavigableItem {
     /**
      * Lets the item know about an adjacent item.
      */
-    override fun addNeighbour(neighbour: NavigableItem) {
+    override fun addNeighbour(neighbour: NavigableItem, canTrackBack: Boolean) {
         // If already a neighbour, exit.
         if (neighbour in _neighbours)
             return
@@ -18,7 +18,7 @@ abstract class DefaultNavigableItem : NavigableItem {
             // ... add a reference to it...
             _neighbours.add(it)
             // ... and let the neighbour know about this instance.
-            it.addNeighbour(this)
+            if (canTrackBack) it.addNeighbour(this)
         }
     }
 }

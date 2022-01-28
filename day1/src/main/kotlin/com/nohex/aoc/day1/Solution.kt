@@ -1,5 +1,4 @@
 package com.nohex.aoc.day1
-
 import com.nohex.aoc.PuzzleInput
 
 fun main() {

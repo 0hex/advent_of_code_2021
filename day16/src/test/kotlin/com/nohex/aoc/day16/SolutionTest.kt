@@ -17,29 +17,52 @@ internal class SolutionTest {
         val expectedBinaryString = "0000000100100011010001010110011110001001101010111100110111101111"
 
         val binaryString = hexValue.asSequence()
-            .toBCD()
+            .toBinary()
             .joinToString("")
 
         binaryString shouldBe expectedBinaryString
     }
 
     @ParameterizedTest(name = "version sum for {0} should be {1}")
-    @ArgumentsSource(TestPackets::class)
+    @ArgumentsSource(VersionTestPackets::class)
     fun calculateVersionSum(hexValue: String, versionSum: Int) {
-        hexValue.asSequence().toBCD().iterator().let {
+        hexValue.asSequence().toBinary().iterator().let {
             Packet.of(it)
                 .versions()
                 .sum() shouldBe versionSum
         }
     }
 
-    class TestPackets : ArgumentsProvider {
+    class VersionTestPackets : ArgumentsProvider {
         override fun provideArguments(p0: ExtensionContext?): Stream<out Arguments> =
             Stream.of(
                 Arguments.of("8A004A801A8002F478", 16),
                 Arguments.of("620080001611562C8802118E34", 12),
                 Arguments.of("C0015000016115A2E0802F182340", 23),
                 Arguments.of("A0016C880162017C3686B18A3D4780", 31)
+            )
+
+    }
+
+    @ParameterizedTest(name = "value calculation for {0} should be {1}")
+    @ArgumentsSource(ValueTestPackets::class)
+    fun calculateValue(hexValue: String, value: Int) {
+        hexValue.asSequence().toBinary().iterator().let {
+            Packet.of(it).value() shouldBe value
+        }
+    }
+
+    class ValueTestPackets : ArgumentsProvider {
+        override fun provideArguments(p0: ExtensionContext?): Stream<out Arguments> =
+            Stream.of(
+                Arguments.of("C200B40A82", 3),
+                Arguments.of("04005AC33890", 54),
+                Arguments.of("880086C3E88112", 7),
+                Arguments.of("CE00C43D881120", 9),
+                Arguments.of("D8005AC2A8F0", 1),
+                Arguments.of("F600BC2D8F", 0),
+                Arguments.of("9C005AC2F8F0", 0),
+                Arguments.of("9C0141080250320F1802104A08", 1),
             )
 
     }

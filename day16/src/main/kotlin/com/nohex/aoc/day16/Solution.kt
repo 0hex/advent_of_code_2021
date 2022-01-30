@@ -4,11 +4,14 @@ import com.nohex.aoc.PuzzleInput
 
 fun main() {
     val inputIterator = getInput("input.txt")
-        .toBCD()
+        .toBinary()
         .iterator()
-    val day1Solution = Packet.of(inputIterator).versions().sumOf { it }
+    val packet = Packet.of(inputIterator)
+    val day1Solution = packet.versions().sumOf { it }
+    val day2Solution = packet.value()
 
     println("Day 16, part 1: $day1Solution")
+    println("Day 16, part 2: $day2Solution")
 }
 
 fun getInput(path: String): Sequence<Char> =

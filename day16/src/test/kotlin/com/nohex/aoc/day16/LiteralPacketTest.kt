@@ -21,4 +21,13 @@ internal class LiteralPacketTest {
         // 1000 0001 -> 0xF1 -> 129
         (sut as LiteralPacket).value shouldBe 129
     }
+
+    @Test
+    fun `should extract the value of the example`() {
+        val binaryEncodedPacket = "D2FE28"
+            .asSequence()
+            .toBinary()
+            .iterator()
+        Packet.of(binaryEncodedPacket).value() shouldBe 2021
+    }
 }

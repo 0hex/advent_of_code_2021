@@ -9,7 +9,7 @@ fun Iterator<Char>.next(amount: Int): String =
         .map { this.next() }
         .joinToString("")
 
-fun Sequence<Char>.toBCD(): Sequence<Char> =
+fun Sequence<Char>.toBinary(): Sequence<Char> =
     this.flatMap {
         when (it) {
             '0' -> "0000"

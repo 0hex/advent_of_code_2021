@@ -5,6 +5,8 @@ class LiteralPacket(version: Int, val value: Long) : Packet(version) {
     override fun versions(): List<Int> =
         listOf(version)
 
+    override fun value(): Long = value
+
     companion object {
 
         fun of(version: Int, input: Iterator<Char>) =
@@ -21,8 +23,8 @@ class LiteralPacket(version: Int, val value: Long) : Packet(version) {
                 // Create the string.
                 toString()
             }
-                .asSequence().toHex()
+                .asSequence()
                 .joinToString("")
-                .toLong(radix = 16)
+                .toLong(radix = 2)
     }
 }

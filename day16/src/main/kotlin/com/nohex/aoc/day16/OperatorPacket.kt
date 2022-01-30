@@ -1,22 +1,26 @@
 package com.nohex.aoc.day16
 
-class OperatorPacket(version: Int, private val packets: List<Packet>) : Packet(version) {
+sealed class OperatorPacket(
+    version: Int,
+    private val packets: List<Packet>,
+    private val operation: (List<Long>) -> Long
+) : Packet(version) {
     override fun versions(): List<Int> =
         listOf(version) + packets.flatMap { it.versions() }
 
+    override fun value(): Long =
+        operation(packets.map { it.value() })
+
     companion object {
 
-        fun of(version: Int, input: Iterator<Char>) =
-            OperatorPacket(version, parseInput(input))
-
-        private fun parseInput(input: Iterator<Char>): List<Packet> =
+        internal fun parseInput(input: Iterator<Char>): List<Packet> =
             // Take one character (the length type ID).
             when (input.next()) {
                 // It's a 0, read as many characters as the next 15 bits.
                 '0' -> findForLength(input)
                 // It's a 1, read as many sub-packets as the next 11 bits.
                 '1' -> findForCount(input)
-                else -> error("Unexpected value")
+                else -> error("Unexpected operator packet type")
             }
 
         /**
@@ -25,10 +29,10 @@ class OperatorPacket(version: Int, private val packets: List<Packet>) : Packet(v
          */
         private fun findForLength(input: Iterator<Char>): List<Packet> =
             input.next(15).toIntOrNull(radix = 2)?.let { length ->
-                val inputIterator = input.next(length).iterator()
+                val subPacketIterator = input.next(length).iterator()
                 val packets = mutableListOf<Packet>()
-                while (inputIterator.hasNext()) {
-                    packets += of(inputIterator)
+                while (subPacketIterator.hasNext()) {
+                    packets += of(subPacketIterator)
                 }
                 packets
             } ?: emptyList()
